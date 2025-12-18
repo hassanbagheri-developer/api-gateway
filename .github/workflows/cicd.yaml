@@ -3,7 +3,7 @@ name: api-gateway
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 env:
@@ -27,6 +27,7 @@ jobs:
       - name: Build Docker Image
         run: |
           mvn clean package
+
 
       - name: build docker image
         run: |
