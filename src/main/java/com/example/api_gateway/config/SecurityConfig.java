@@ -21,7 +21,7 @@ public class SecurityConfig {
                                 "/v3/api-docs/**",
                                 "/oauth2/token",
                                 "/core-service/oauth2/getToken",
-                                "/oauth2/register",
+                                "/core-service/oauth2/register",
 
                                 // swagger for core-service
                                 "/core-service/v3/api-docs/**",
