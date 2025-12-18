@@ -15,12 +15,12 @@ spring:
 
         # ================= CORE SERVICE =================
         - id: core-service
-          uri: http://localhost:8080
+          uri: http://service-core:8080
           predicates:
             - Path=/core-service/**
 
         - id: core-service-swagger
-          uri: http://localhost:8080
+          uri: http://service-core:8080
           predicates:
             - Path=/core-service/v3/api-docs/**
 
