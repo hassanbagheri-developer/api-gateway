@@ -1,31 +1,74 @@
 server:
   port: 8070
+  servlet:
+    context-path: /api-gateway
 
 spring:
+  application:
+    name: api-gateway
+
   cloud:
     config:
       enabled: false
     gateway:
       routes:
-        - id: wiki
-          uri: http://127.0.0.1:8080
+
+        # ================= CORE SERVICE =================
+        - id: core-service
+          uri: http://localhost:8080
           predicates:
-            - Path=/wiki/**
-        - id: wiki-swagger
-          uri: http://127.0.0.1:8080
+            - Path=/core-service/**
+
+        - id: core-service-swagger
+          uri: http://localhost:8080
           predicates:
-            - Path=/wiki/v3/api-docs/**, /wiki/swagger-ui/**
+            - Path=/core-service/v3/api-docs/**
+
+
+        # ================= MARKETPLACE SERVICE =================
+        - id: marketPlace
+          uri: http://localhost:8090
+          predicates:
+            - Path=/marketPlace/**
+
+        - id: marketPlace-swagger
+          uri: http://localhost:8090
+          predicates:
+            - Path=/marketPlace/v3/api-docs/**
 
 
 
 
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8085/realms/my-realm
+
+
+# ================= SWAGGER AGGREGATION =================
 springdoc:
   api-docs:
     enabled: true
   swagger-ui:
+    persistAuthorization: false
+
     urls:
-      - name: wiki
-        url: /wiki/v3/api-docs
+      - name: api-gateway
+        url: /v3/api-docs
+
+      - name: core-service
+        url: /core-service/v3/api-docs
+
+      - name: marketPlace
+        url: /marketPlace/v3/api-docs
 
     displayOperationId: true
     tryItOutEnabled: true
+
+keycloak:
+  for-api-api-gateway:
+    client_id: api-gateway
+    client_secret: sKOdgjg5nYuSKBoLE6xFyvNSPXTsco7G
+
