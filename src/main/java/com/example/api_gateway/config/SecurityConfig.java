@@ -19,7 +19,8 @@ public class SecurityConfig {
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
-                                "/auth/token",
+                                "/oauth2/token",
+                                "/core-service/oauth2/getToken",
 
                                 // swagger for core-service
                                 "/core-service/v3/api-docs/**",

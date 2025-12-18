@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/oauth2")
 @RequiredArgsConstructor
 public class AuthController {
 
