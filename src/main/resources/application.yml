@@ -31,6 +31,9 @@ spring:
           predicates:
             - Path=/marketPlace/**
 
+
+
+
         - id: marketPlace-swagger
           uri: http://localhost:8090
           predicates:
