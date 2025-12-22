@@ -1,3 +1,4 @@
+/*
 package com.example.api_gateway.api.controller;
 
 import com.example.api_gateway.api.dto.TokenRequest;
@@ -44,3 +45,4 @@ public class AuthController {
                 .bodyToMono(new ParameterizedTypeReference<>() {});
     }
 }
+*/
