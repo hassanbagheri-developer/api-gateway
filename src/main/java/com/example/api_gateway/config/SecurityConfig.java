@@ -2,6 +2,7 @@ package com.example.api_gateway.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
@@ -23,7 +24,6 @@ public class SecurityConfig {
                                 "/core-service/oauth2/getToken",
                                 "/core-service/oauth2/register",
 
-                                // swagger for core-service
                                 "/core-service/v3/api-docs/**",
                                 "/core-service/swagger-ui/**",
                                 "/core-service/public/**",
@@ -32,7 +32,7 @@ public class SecurityConfig {
                                 "/api-gateway/v3/api-docs/**",
                                 "/api-gateway/swagger-ui/**",
                                 "/api-gateway/public/**",
-                                "/webjars/swagger-ui/index.html",
+                                "/webjars/**",
 
                                 // swagger for marketPlace
                                 "/marketPlace/v3/api-docs/**",
