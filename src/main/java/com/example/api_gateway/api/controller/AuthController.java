@@ -31,7 +31,7 @@ public class AuthController {
     private final WebClient keycloakClient;
 
 
-    @PostMapping("/token")
+    @PostMapping("/getToken")
     public Mono<Map<String, Object>> token(@RequestBody TokenRequest req) {
         return keycloakClient.post()
                 .uri("/protocol/openid-connect/token")
