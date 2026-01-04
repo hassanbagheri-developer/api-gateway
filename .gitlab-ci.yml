@@ -10,12 +10,13 @@ variables:
 # مرحله 1: build پروژه جاوا
 build-backend:
   stage: build
-  image: maven:3.9.4-openjdk-21
+  image: maven:3.9.4-eclipse-temurin-21
   script:
     - mvn clean package
   artifacts:
     paths:
       - target/*.jar
+
 
 # مرحله 2: ساخت و push Docker image
 docker-build-and-push:
