@@ -30,6 +30,7 @@ public class SecurityConfig {
                                 "/core-service/public/**",
 
 
+
                                 // swagger for api-gateway
                                 "/api-gateway/v3/api-docs/**",
                                 "/api-gateway/swagger-ui/**",
