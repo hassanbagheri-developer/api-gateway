@@ -1,0 +1,49 @@
+stages:
+  - build
+  - docker
+  - deploy
+
+variables:
+  IMAGE_NAME: "hassan233/api-gateway"
+  DOCKER_TLS_CERTDIR: ""
+
+# مرحله 1: build پروژه جاوا
+build-backend:
+  stage: build
+  image: maven:3.9.4-openjdk-21
+  script:
+    - mvn clean package
+  artifacts:
+    paths:
+      - target/*.jar
+
+# مرحله 2: ساخت و push Docker image
+docker-build-and-push:
+  stage: docker
+  image: docker:24.0.6
+  services:
+    - docker:24.0.6-dind
+  variables:
+    DOCKER_HOST: tcp://docker:2375
+  script:
+    - echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+    - IMAGE_TAG=1.0.$CI_PIPELINE_IID
+    - docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:$IMAGE_TAG .
+    - docker push $IMAGE_NAME:latest
+    - docker push $IMAGE_NAME:$IMAGE_TAG
+  only:
+    - master
+
+# مرحله 3: trigger pipeline Helm (در repo جداگانه helm-charts)
+# trigger-helm:
+#   stage: deploy
+#   image: curlimages/curl:8.2.1
+#   script:
+#     - |
+#       curl -X POST \
+#         -H "PRIVATE-TOKEN: $GITLAB_TOKEN" \
+#         -H "Content-Type: application/json" \
+#         -d "{\"ref\":\"master\",\"variables\":{\"IMAGE_TAG\":\"1.0.$CI_PIPELINE_IID\"}}" \
+#         "https://gitlab.com/api/v4/projects/<HELM_PROJECT_ID>/trigger/pipeline"
+#   only:
+#     - master
