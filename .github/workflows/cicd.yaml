@@ -67,7 +67,7 @@ jobs:
           ssh ubuntu@185.226.117.103 << 'EOF'
             set -e
             cd /opt/Helm/api-gateway
-            helm upgrade --install api-gateway . \
+            sudo helm upgrade --install api-gateway . \
               --namespace app \
               --create-namespace \
               --set image.tag=1.0.${{ github.run_number }}
