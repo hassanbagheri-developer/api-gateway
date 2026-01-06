@@ -56,9 +56,9 @@ jobs:
 
       - name: Setup SSH
         run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}"
+          echo "${{ variables.SSH_PRIVATE_KEY }}"
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          echo "${{ variables.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H 185.226.117.103 >> ~/.ssh/known_hosts
 
