@@ -56,34 +56,34 @@ jobs:
           docker push $IMAGE_NAME:latest
           docker push $IMAGE_NAME:1.0.${{ github.run_number }}
 
-deploy:
-  needs: build
-  if: contains(github.event.head_commit.message, 'build') || github.event_name == 'workflow_dispatch'
-  runs-on: ubuntu-latest
+  deploy:
+    needs: build
+    if: contains(github.event.head_commit.message, 'build') || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
 
-  steps:
-    - name: Install SSH client
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y openssh-client
+    steps:
+      - name: Install SSH client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openssh-client
 
-    - name: Setup SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-        chmod 600 ~/.ssh/id_ed25519
-        ssh-keyscan -H 185.226.117.103 >> ~/.ssh/known_hosts
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H 185.226.117.103 >> ~/.ssh/known_hosts
 
-    - name: Deploy with Helm
-      run: |
-        ssh ubuntu@185.226.117.103 << 'EOF'
-          NAMESPACE="${{ github.event.inputs.deploy_namespace || 'app' }}"
-
-          echo "Deploying to namespace: $NAMESPACE"
-
-          cd /opt/Helm/api-gateway
-          helm upgrade --install api-gateway . \
-            --namespace $NAMESPACE \
-            --create-namespace \
-            --set image.tag=1.0.${{ github.run_number }}
-        EOF
+      - name: Deploy with Helm
+        run: |
+          ssh ubuntu@185.226.117.103 << 'EOF'
+            NAMESPACE="${{ github.event.inputs.deploy_namespace || 'app' }}"
+  
+            echo "Deploying to namespace: $NAMESPACE"
+  
+            cd /opt/Helm/api-gateway
+            helm upgrade --install api-gateway . \
+              --namespace $NAMESPACE \
+              --create-namespace \
+              --set image.tag=1.0.${{ github.run_number }}
+          EOF
