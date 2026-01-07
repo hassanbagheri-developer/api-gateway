@@ -65,6 +65,7 @@ jobs:
       - name: Deploy with Helm
         run: |
           ssh ubuntu@185.226.117.103 << 'EOF'
+            date
             set -e
             cd /opt/Helm/api-gateway
             sudo helm upgrade --install api-gateway . \
