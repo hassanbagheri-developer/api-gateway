@@ -15,7 +15,6 @@ on:
           - app
           - test
 
-
 env:
   DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
   IMAGE_NAME: "hassan233/api-gateway"
