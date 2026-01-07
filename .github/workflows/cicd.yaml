@@ -9,7 +9,6 @@ on:
       deploy_namespace:
         description: "Select target namespace"
         required: true
-        default: "app"
         type: choice
         options:
           - app
