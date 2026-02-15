@@ -57,20 +57,21 @@ jobs:
   deploy:
     needs: build
     environment: production
-    env:
-      IP_SERVER: ${{ vars.SERVER_IP }}   # یا secrets اگر secret باشه
-    #if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-
     steps:
       - name: Setup SSH
         run: |
           sudo apt-get update
           sudo apt-get install -y openssh-client
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY_GLOBAL }}" > ~/.ssh/id_ed25519
+
+          # Secret
+          printf "%s\n" "${{ secrets.SSH_PRIVATE_KEY_GLOBAL }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H  ${{ environment.variables.SERVER_IP }}  >> ~/.ssh/known_hosts
+
+          # Environment variable از Environment
+          echo "Server IP is ${{ environment.variables.SERVER_IP }}"
+          ssh-keyscan -H ${{ environment.variables.SERVER_IP }} >> ~/.ssh/known_hosts
 
       - name: Deploy with Helm
         run: |
