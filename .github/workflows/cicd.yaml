@@ -81,7 +81,7 @@ jobs:
 
             echo "Deploying to namespace: \$NAMESPACE"
 
-            cd /opt/Helm/api-gateway
+            cd /opt/github/helm/helm-api-gateway
 
             helm upgrade --install api-gateway . \
               --namespace \$NAMESPACE \
