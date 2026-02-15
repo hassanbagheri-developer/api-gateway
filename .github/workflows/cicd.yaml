@@ -27,7 +27,6 @@ jobs:
     outputs:
       image_tag: 1.0.${{ github.run_number }}
 
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -57,22 +56,35 @@ jobs:
 
   deploy:
     needs: build
-#    if: github.event_name == 'workflow_dispatch'
+    #if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup SSH
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openssh-client
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H 185.231.182.25 >> ~/.ssh/known_hosts
+
       - name: Deploy with Helm
         run: |
-          NAMESPACE="${{ github.event.inputs.deploy_namespace }}"
-          if [ -z "$NAMESPACE" ]; then
-            NAMESPACE="app"
-          fi
-          
-          echo "Deploying to namespace: $NAMESPACE"
-          
-          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no ubuntu@185.231.182.25 \
-            "cd /opt/github/helm/helm-api-gateway && \
-             helm upgrade --install api-gateway . \
-             --namespace $NAMESPACE \
-             --create-namespace \
-             --set image.tag=1.0.${{ github.run_number }}"
+          ssh ubuntu@185.231.182.25 << EOF
+            set -e
+
+            NAMESPACE="${{ github.event.inputs.deploy_namespace }}"
+            if [ -z "\$NAMESPACE" ]; then
+              NAMESPACE="app"
+            fi
+
+            echo "Deploying to namespace: \$NAMESPACE"
+
+            cd /opt/github/helm/helm-api-gateway
+
+            helm upgrade --install api-gateway . \
+              --namespace \$NAMESPACE \
+              --create-namespace \
+              --set image.tag=1.0.${{ github.run_number }}
+          EOF
