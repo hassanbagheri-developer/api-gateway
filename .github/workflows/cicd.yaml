@@ -58,7 +58,7 @@ jobs:
     needs: build
     environment: production
     env:
-      IP_SERVER: ${{ vars.IP_SERVER }}   # یا secrets اگر secret باشه
+      IP_SERVER: ${{ vars.IP_SERVER }}
     #if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
@@ -74,7 +74,7 @@ jobs:
 
       - name: Deploy with Helm
         run: |
-          ssh ${{ github.USER_SERVER }}@${{ github.IP_SERVER }} << EOF
+          ssh  ${{ vars.USER_SERVER}}@$IP_SERVER << EOF
             set -e
 
             NAMESPACE="${{ github.event.inputs.deploy_namespace }}"
