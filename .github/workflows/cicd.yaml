@@ -68,8 +68,8 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY_GLOBAL }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          echo $IP_SERVER
-          ssh-keyscan -H $IP_SERVER  >> ~/.ssh/known_hosts
+          echo  ${{ vars.SERVER_IP }}
+          ssh-keyscan -H  ${{ vars.SERVER_IP }}  >> ~/.ssh/known_hosts
 
       - name: Deploy with Helm
         run: |
