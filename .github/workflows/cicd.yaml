@@ -68,11 +68,11 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY_GLOBAL }}" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H ${{ IP_SERVER }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ github.IP_SERVER }} >> ~/.ssh/known_hosts
 
       - name: Deploy with Helm
         run: |
-          ssh ${{ USER_SERVER }}@${{ IP_SERVER }} << EOF
+          ssh ${{ github.USER_SERVER }}@${{ github.IP_SERVER }} << EOF
             set -e
 
             NAMESPACE="${{ github.event.inputs.deploy_namespace }}"
