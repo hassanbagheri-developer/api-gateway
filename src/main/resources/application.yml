@@ -14,7 +14,7 @@ spring:
     gateway:
       routes:
 
-        # ================= CORE SERVICE =================
+        # =================== CORE SERVICE =================
         - id: core-service
           uri: http://core-service:8080
           predicates:
