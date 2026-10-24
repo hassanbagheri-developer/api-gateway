@@ -17,30 +17,30 @@ public class SecurityConfig {
                 .authorizeExchange(auth -> auth
                         .pathMatchers(
                                 // swagger for gateway
-                                "/swagger-ui.html",
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/oauth2/token",
-                                "/core-service/oauth2/**",
-                                "/core-service/oauth2/register",
-                                "/core-service/oauth2/registerV2",
+                                "/api/swagger-ui.html",
+                                "/api/swagger-ui/**",
+                                "/api/v3/api-docs/**",
+                                "/api/oauth2/token",
+                                "/api/core-service/oauth2/**",
+                                "/api/core-service/oauth2/register",
+                                "/api/core-service/oauth2/registerV2",
 
-                                "/core-service/v3/api-docs/**",
-                                "/core-service/swagger-ui/**",
-                                "/core-service/public/**",
+                                "/api/core-service/v3/api-docs/**",
+                                "/api/core-service/swagger-ui/**",
+                                "/api/core-service/public/**",
 
 
 
                                 // swagger for api-gateway
-                                "/api-gateway/v3/api-docs/**",
-                                "/api-gateway/swagger-ui/**",
-                                "/api-gateway/public/**",
-                                "/webjars/**",
+                                "/api/api-gateway/v3/api-docs/**",
+                                "/api/api-gateway/swagger-ui/**",
+                                "/api/api-gateway/public/**",
+                                "/api/webjars/**",
 
                                 // swagger for marketPlace
-                                "/marketPlace/v3/api-docs/**",
-                                "/marketPlace/swagger-ui/**",
-                                "/marketPlace/public/**"
+                                "/api/marketPlace/v3/api-docs/**",
+                                "/api/marketPlace/swagger-ui/**",
+                                "/api/marketPlace/public/**"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )
