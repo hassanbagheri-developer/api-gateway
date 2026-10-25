@@ -17,15 +17,15 @@ public class SecurityConfig {
                 .authorizeExchange(auth -> auth
                         .pathMatchers(
                                 // swagger for gateway
-                                "/api/swagger-ui.html",
-                                "/api/swagger-ui/**",
-                                "/api/v3/api-docs/**",
-                                "/api/oauth2/token",
+                                "/swagger-ui.html",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/oauth2/token",
                                 "/api/core-service/oauth2/**",
                                 "/api/core-service/oauth2/register",
                                 "/api/core-service/oauth2/registerV2",
 
-                                "/api/core-service/v3/api-docs/**",
+                                "/core-service/v3/api-docs/**",
                                 "/api/core-service/swagger-ui/**",
                                 "/api/core-service/public/**",
 
@@ -36,11 +36,12 @@ public class SecurityConfig {
                                 "/api/api-gateway/swagger-ui/**",
                                 "/api/api-gateway/public/**",
                                 "/api/webjars/**",
+                                "/webjars/**",
 
                                 // swagger for marketPlace
-                                "/api/marketPlace/v3/api-docs/**",
-                                "/api/marketPlace/swagger-ui/**",
-                                "/api/marketPlace/public/**"
+                                "/marketPlace/v3/api-docs/**",
+                                "/marketPlace/swagger-ui/**",
+                                "/marketPlace/public/**"
                         ).permitAll()
                         .anyExchange().authenticated()
                 )

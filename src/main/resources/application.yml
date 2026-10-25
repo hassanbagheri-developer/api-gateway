@@ -1,12 +1,14 @@
 server:
   port: 8070
 #  servlet:
-#    context-path: /api-gateway
+#    context-path: /api
 
 spring:
   application:
     version: 1.1.6
     name: api-gateway
+  webflux:
+    base-path: /api
 
   cloud:
     config:
@@ -18,7 +20,7 @@ spring:
         - id: core-service
           uri: http://core-service:8080
           predicates:
-            - Path=/core-service/**
+            - Path=/api/core-service/**
 
         - id: core-service-swagger
           uri: http://core-service:8080
