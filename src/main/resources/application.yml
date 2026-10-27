@@ -78,3 +78,25 @@ keycloak:
     client_id: api-gateway
     client_secret: sKOdgjg5nYuSKBoLE6xFyvNSPXTsco7G
 
+
+logging:
+  level:
+    root: INFO
+
+    # لاگ‌های خود API Gateway
+    org.springframework.cloud.gateway: TRACE
+
+    # تشخیص Route و Predicate
+    org.springframework.cloud.gateway.handler.RoutePredicateHandlerMapping: TRACE
+    org.springframework.cloud.gateway.route: DEBUG
+
+    # لاگ‌های WebFlux و پردازش درخواست
+    org.springframework.web.reactive: DEBUG
+    org.springframework.web.server.adapter.HttpWebHandlerAdapter: DEBUG
+
+    # لاگ‌های HTTP Client و اتصال به سرویس مقصد
+    reactor.netty.http.client: DEBUG
+    reactor.netty.http.server: DEBUG
+
+    # امنیت و احراز هویت
+    org.springframework.security: DEBUG
