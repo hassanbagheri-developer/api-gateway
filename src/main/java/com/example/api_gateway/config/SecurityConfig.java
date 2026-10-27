@@ -21,13 +21,13 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
                                 "/oauth2/token",
-                                "/api/core-service/oauth2/**",
-                                "/api/core-service/oauth2/register",
-                                "/api/core-service/oauth2/registerV2",
+                                "/core-service/oauth2/**",
+                                "/core-service/oauth2/register",
+                                "/core-service/oauth2/registerV2",
 
                                 "/core-service/v3/api-docs/**",
-                                "/api/core-service/swagger-ui/**",
-                                "/api/core-service/public/**",
+                                "/core-service/swagger-ui/**",
+                                "/core-service/public/**",
 
 
 
