@@ -50,7 +50,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://wiki.myddns.me:30250/realms/my-realm
+          issuer-uri: https://wiki.myddns.me/auth/realms/my-realm
 
 
 # ================= SWAGGER AGGREGATION =================
