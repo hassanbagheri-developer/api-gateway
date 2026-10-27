@@ -24,6 +24,7 @@ public class SecurityConfig {
                                 "/core-service/oauth2/**",
                                 "/core-service/oauth2/register",
                                 "/core-service/oauth2/registerV2",
+                                "/core-service/actuator/refresh",
 
                                 "/core-service/v3/api-docs/**",
                                 "/core-service/swagger-ui/**",
