@@ -18,7 +18,7 @@ public class TestController {
     private String version;
 
     @GetMapping
-    public String hello() {
+    public String getVersion() {
         System.out.println(version);
         return "version is: "+ version;
     }
