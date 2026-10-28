@@ -16,7 +16,7 @@ spring:
 
   cloud:
     config:
-      enabled: false
+      enabled: true
     gateway:
       routes:
 
