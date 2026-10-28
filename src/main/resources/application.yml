@@ -4,6 +4,9 @@ server:
     context-path: /api
 
 spring:
+  config:
+    import: optional:configserver:http://config-service.config.svc.cluster.local:8060
+
   application:
     version: 1.1.6
     name: api-gateway
