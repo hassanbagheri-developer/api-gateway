@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 //@Api(tags = "API", value = "")
-@RequestMapping("/public/test")
+@RequestMapping("/public/version")
 @RefreshScope
-@DependsOn("applicationConfigurations")
+//@DependsOn("applicationConfigurations")
 public class TestController {
 
     @Value("${spring.application.version:unknown}")
@@ -20,7 +20,7 @@ public class TestController {
     @GetMapping
     public String hello() {
         System.out.println(version);
-        return "Hello World "+ version;
+        return "version is: "+ version;
     }
 
 }

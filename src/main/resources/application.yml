@@ -14,20 +14,18 @@ spring:
     base-path: /api
 
   cloud:
-    config:
-      enabled: false
     gateway:
       routes:
 
 
         # =================== CORE SERVICE =================
         - id: core-service
-          uri: http://core-service:8080
+          uri: http://localhost:8080
           predicates:
             - Path=/api/core-service/**
 
         - id: core-service-swagger
-          uri: http://core-service:8080
+          uri: http://localhost:8080
           predicates:
             - Path=/core-service/v3/api-docs/**
 

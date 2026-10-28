@@ -20,6 +20,7 @@ public class SecurityConfig {
                                 "/swagger-ui.html",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
+                                "/public/*",
                                 "/oauth2/token",
                                 "/core-service/oauth2/**",
                                 "/core-service/oauth2/register",
