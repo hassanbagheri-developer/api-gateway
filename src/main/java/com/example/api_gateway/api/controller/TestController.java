@@ -22,5 +22,4 @@ public class TestController {
         System.out.println(version);
         return "version is: "+ version;
     }
-
 }
